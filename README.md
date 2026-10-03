@@ -154,7 +154,7 @@ The demo shows a customer asking a question through Telegram and the AI Agent re
 
 AI Knowledge Base Chatbot Demo
 
-"Watch the Demo" (./AI-Knowledge-Base-Chatbot-RAG_Demo.mp4)
+"Watch the Demo" (./AI_Knowledge_Base_Bot_Demo_NoVoice.mp4)
 
 ---
 
