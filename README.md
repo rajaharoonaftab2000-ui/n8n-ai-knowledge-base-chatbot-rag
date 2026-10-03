@@ -2,113 +2,76 @@ AI Knowledge Base Chatbot (RAG) for Telegram
 
 An AI-powered Telegram chatbot that answers customer questions using information stored in a business knowledge base.
 
-Built with n8n, Google Gemini, Telegram, Google Drive, and Supabase Vector Store, this system uses Retrieval-Augmented Generation (RAG) to retrieve relevant business information and generate accurate responses.
+Built with n8n, Google Gemini, Telegram and Supabase Vector Store, this system uses Retrieval-Augmented Generation (RAG) to provide accurate answers based on previously stored business documents.
 
 ---
 
-Overview
+📌 Project Overview
 
-This project demonstrates an AI-powered Knowledge Base / RAG chatbot for businesses.
+This project demonstrates a complete AI Knowledge Base / RAG chatbot for businesses.
 
-Business information is first loaded from a document stored in Google Drive. The document is processed, split into smaller sections, converted into vector embeddings using Google Gemini, and stored in a Supabase Vector Store.
+Business information is first loaded from a document stored in Google Drive. The document is processed, split into smaller pieces, converted into embeddings using Google Gemini, and stored in a Supabase Vector Store.
 
-When a customer asks a question through Telegram, the AI Agent searches the knowledge base for relevant information and generates a response using Google Gemini.
-
----
-
-Workflow
-
-Knowledge Base Workflow
-
-Google Drive → Data Loader → Text Splitter → Gemini Embeddings → Supabase Vector Store
-
-Telegram AI Chatbot Workflow
-
-Telegram Trigger → AI Agent → Supabase Vector Store → Google Gemini → Code (JavaScript) → Telegram
+When a customer asks a question on Telegram, the AI Agent searches the stored knowledge and generates a relevant answer using Google Gemini.
 
 ---
 
-How It Works
+⚙️ How It Works
 
-1. 📚 Load Business Knowledge
+The automation consists of two main workflows.
 
-Business information is stored in a document and downloaded from Google Drive.
+1️⃣ Knowledge Base / Data Ingestion Workflow
 
-2. ⚙️ Process the Document
+The first workflow prepares the business knowledge for the AI chatbot.
 
-The document is loaded and split into smaller sections so the information can be efficiently searched.
+1. A business document is downloaded from Google Drive.
+2. The Default Data Loader processes the document.
+3. The document is split into smaller sections.
+4. Google Gemini Embeddings convert the information into vector embeddings.
+5. The embeddings are stored in the Supabase Vector Store.
+6. The knowledge base is now ready for customer queries.
 
-3. 🔤 Generate Embeddings
+2️⃣ Telegram AI RAG Chatbot Workflow
 
-Google Gemini Embeddings convert the document information into vector embeddings.
+The second workflow handles customer questions.
 
-4. 🗄️ Store Knowledge
-
-The embeddings are stored in the Supabase Vector Store, creating the searchable business knowledge base.
-
-5. 💬 Receive Customer Question
-
-The customer sends a question through Telegram.
-
-6. 🔎 Retrieve Relevant Information
-
-The AI Agent searches the Supabase Vector Store to find information related to the customer's question.
-
-7. 🤖 Generate AI Response
-
-Google Gemini uses the retrieved information to generate a relevant response.
-
-8. 💾 Maintain Conversation Context
-
-Simple Memory helps maintain context during the conversation.
-
-9. 📤 Send Response
-
-The processed response is formatted using JavaScript and sent back to the customer through Telegram.
+1. Customer sends a message on the Telegram Bot.
+2. The Telegram Trigger receives the question.
+3. The AI Agent processes the customer's request.
+4. The agent searches the Supabase Vector Store for relevant information.
+5. Google Gemini Chat Model generates the response.
+6. Simple Memory helps maintain the conversation context.
+7. A Code node (JavaScript) formats the response.
+8. The final answer is sent back to the customer through Telegram.
 
 ---
 
-Features
+✨ Key Features
 
 - 🤖 AI-powered customer support
 - 📚 Business knowledge base
-- 🔎 Retrieval-Augmented Generation (RAG)
+- 🔎 RAG-based information retrieval
 - 💬 Telegram chatbot integration
 - 🧠 Google Gemini AI
-- 🔤 Gemini embeddings
 - 🗄️ Supabase Vector Store
+- 🔤 Google Gemini Embeddings
 - 💾 Conversation memory
-- 📄 Google Drive document integration
-- ⚙️ JavaScript response processing
-- ⚡ Automated customer responses
-- 🔄 Knowledge-based AI answers
+- ⚡ Automated responses using n8n
+- 📄 Knowledge loaded from business documents
+- 🔐 No API keys stored in the repository
 
 ---
 
-Technologies Used
-
-Technology| Purpose
-n8n| Workflow automation
-Google Gemini| AI chat model and embeddings
-Supabase| Vector database / knowledge storage
-Telegram| Customer chatbot interface
-Google Drive| Business document storage
-JavaScript| Response processing and formatting
-RAG| Knowledge retrieval
-
----
-
-Workflow Nodes
+🧩 Workflow Nodes
 
 Knowledge Base Workflow
 
 - Google Drive – Download File
 - Default Data Loader
-- Text Splitter
 - Google Gemini Embeddings
 - Supabase Vector Store – Insert Documents
 
-Telegram AI Chatbot Workflow
+Telegram Chatbot Workflow
 
 - Telegram Trigger
 - AI Agent
@@ -121,45 +84,54 @@ Telegram AI Chatbot Workflow
 
 ---
 
-Use Case
+🛠️ Technologies Used
 
-This automation can help businesses provide automated customer support using their own business information.
-
-It can be adapted for:
-
-- 💄 Beauty salons
-- 💍 Bridal makeup businesses
-- 🏥 Clinics and hospitals
-- 🏠 Real estate businesses
-- 🍽️ Restaurants
-- 🛒 E-commerce businesses
-- 🎓 Education and training businesses
-- 💼 Service-based businesses
-- 📞 Customer support teams
-
-Businesses can add their own service information, prices, FAQs, policies, opening hours, product information, and other documentation to the knowledge base.
+Technology| Purpose
+n8n| Workflow automation
+Google Gemini| AI chat model and embeddings
+Supabase| Vector database / knowledge storage
+Telegram| Customer chatbot interface
+Google Drive| Business document storage
+JavaScript| Response formatting
+RAG| Knowledge retrieval and AI responses
 
 ---
 
-Example Customer Query
+💼 Use Case
 
-Customer
+This system can be adapted for many types of businesses, including:
+
+- Beauty salons
+- Bridal makeup businesses
+- Clinics and hospitals
+- Real estate businesses
+- Restaurants
+- E-commerce businesses
+- Education and training businesses
+- Service-based businesses
+- Customer support teams
+
+A business can provide its own documents, service information, pricing, FAQs and other knowledge, which can then be used by the AI chatbot.
+
+---
+
+💬 Example Customer Query
+
+Customer:
 
 «What is the price of bridal makeup?»
 
-AI Chatbot
+AI Chatbot:
 
-«The bridal makeup service is available at the price listed in our knowledge base. We also provide home service for bridal makeup. The approximate service duration is around 1.5 hours.»
+«The bridal makeup service is available at the price listed in our knowledge base. We also provide home service for bridal makeup. The approximate service duration is around 1.5 hours. If you would like to book an appointment or make a payment, please contact the business using the provided booking details.»
 
-The response is generated using information retrieved from the business knowledge base stored in the Supabase Vector Store.
+The response is generated using information retrieved from the business knowledge base stored in Supabase Vector Store.
 
 ---
 
-Why RAG?
+🎯 Why RAG?
 
-Traditional AI chatbots may rely primarily on the model's general knowledge.
-
-With RAG, the AI Agent first retrieves relevant information from the business's own knowledge base before generating a response.
+Instead of relying only on the AI model's general knowledge, this chatbot retrieves relevant information from the business's own knowledge base.
 
 This allows businesses to provide information such as:
 
@@ -172,54 +144,20 @@ This allows businesses to provide information such as:
 - Product information
 - Company documentation
 
-The knowledge base can also be updated as business information changes.
+The knowledge base can be updated without rebuilding the entire chatbot.
 
 ---
 
 🎥 Demo Video
 
-The demo shows a customer asking a question through Telegram.
-
-The AI Agent receives the question, searches the Supabase Vector Store for relevant business information, and generates a response using Google Gemini.
+The demo shows a customer asking a question through Telegram and the AI Agent retrieving the relevant information from the Supabase knowledge base before sending the response.
 
 AI Knowledge Base Chatbot Demo
 
-"Add your demo video link here"
+"Watch the Demo" (./AI-Knowledge-Base-Chatbot-RAG_Demo.mp4)
 
 ---
 
-Project Status
+📊 Project Status
 
-Status: ✅ Completed
-
-Project Type: AI Automation / RAG Chatbot
-
-Platform: n8n + Telegram
-
-Database: Supabase Vector Store
-
-AI Model: Google Gemini
-
----
-
-Repository Structure
-
-AI-Knowledge-Base-Chatbot-RAG/
-│
-├── workflow/
-│   ├── knowledge-base-workflow.json
-│   └── telegram-rag-chatbot.json
-│
-├── demo/
-│   ├── demo-video.mp4
-│   └── screenshots/
-│
-└── README.md
-
----
-
-🔐 Security
-
-No API keys, passwords, bot tokens, or other private credentials are stored in this repository.
-
-Credentials should be configured securely inside n8n.
+Completed portfolio project.
